@@ -27,15 +27,12 @@ cd /root/dockercom
 echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
-version: "3.9"
 services:
-  windows:
-    image: dockurr/windows
-    container_name: windows
+  macos:
+    image: dockurr/macos
+    container_name: macos
     environment:
-      VERSION: "11"
-      USERNAME: "MASTER"
-      PASSWORD: "admin@123"
+      VERSION: "14"
       RAM_SIZE: "7G"
       CPU_CORES: "4"
     devices:
@@ -44,11 +41,11 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - "8006:8006"
-      - "3389:3389/tcp"
-      - "3389:3389/udp"
+      - 8006:8006
+      - 5900:5900/tcp
+      - 5900:5900/udp
     volumes:
-      - /tmp/windows-storage:/storage
+      - ./macos:/storage
     restart: always
     stop_grace_period: 2m
 
