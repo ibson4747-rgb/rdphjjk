@@ -33,9 +33,6 @@ services:
     container_name: windows
     environment:
       VERSION: "11"
-      VGA: "virtio-gpu"
-      RAM_SIZE: "8G"
-      CPU_CORES: "4"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -49,7 +46,6 @@ services:
       - ./windows:/storage
     restart: always
     stop_grace_period: 2m
-
 EOF
 
 echo
