@@ -28,12 +28,13 @@ echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
 services:
-  macos:
-    image: dockurr/macos
-    container_name: macos
+  windows:
+    image: dockurr/windows
+    container_name: windows
     environment:
-      VERSION: "14"
-      RAM_SIZE: "7G"
+      VERSION: "11"
+      VGA: "virtio-gpu"
+      RAM_SIZE: "8G"
       CPU_CORES: "4"
     devices:
       - /dev/kvm
@@ -42,10 +43,10 @@ services:
       - NET_ADMIN
     ports:
       - 8006:8006
-      - 5900:5900/tcp
-      - 5900:5900/udp
+      - 3389:3389/tcp
+      - 3389:3389/udp
     volumes:
-      - ./macos:/storage
+      - ./windows:/storage
     restart: always
     stop_grace_period: 2m
 
