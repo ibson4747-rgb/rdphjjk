@@ -28,11 +28,11 @@ echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
 services:
-  windows:
-    image: dockurr/windows
-    container_name: windows
+  qemu:
+    image: qemux/qemu
+    container_name: qemu
     environment:
-      VERSION: "11"
+      BOOT: "alpine"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -40,10 +40,8 @@ services:
       - NET_ADMIN
     ports:
       - 8006:8006
-      - 3389:3389/tcp
-      - 3389:3389/udp
     volumes:
-      - ./windows:/storage
+      - ./qemu:/storage
     restart: always
     stop_grace_period: 2m
 EOF
