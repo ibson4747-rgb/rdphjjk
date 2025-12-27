@@ -32,7 +32,9 @@ services:
     image: qemux/qemu
     container_name: qemu
     environment:
-      BOOT: "alpine"
+      BOOT: "https://mirror.clarkson.edu/linuxmint-images/stable/22.2/linuxmint-22.2-xfce-64bit.iso"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
     devices:
       - /dev/kvm
       - /dev/net/tun
