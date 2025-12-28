@@ -34,9 +34,12 @@ services:
     container_name: windows
     environment:
       VERSION: "2019"
-      DISK_SIZE: "128G"
+      DISK_SIZE: "12G"
+      USERNAME: "ibson"
+      PASSWORD: "123456"
       RAM_SIZE: "16G"
       CPU_CORES: "4"
+      
     devices:
       - /dev/kvm
       - /dev/net/tun
