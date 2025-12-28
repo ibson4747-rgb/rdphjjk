@@ -28,12 +28,14 @@ echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
 services:
-  qemu:
-    image: qemux/qemu
-    container_name: qemu
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
     environment:
-      BOOT: "https://mirror.clarkson.edu/linuxmint-images/stable/22.2/linuxmint-22.2-xfce-64bit.iso"
-      RAM_SIZE: "8G"
+      VERSION: "2019"
+      DISK_SIZE: "128G"
+      RAM_SIZE: "16G"
       CPU_CORES: "4"
     devices:
       - /dev/kvm
@@ -42,8 +44,10 @@ services:
       - NET_ADMIN
     ports:
       - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
     volumes:
-      - ./qemu:/storage
+      - ./windows:/storage
     restart: always
     stop_grace_period: 2m
 EOF
