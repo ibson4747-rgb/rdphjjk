@@ -28,18 +28,14 @@ echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
 services:
-services:
-  windows:
-    image: dockurr/windows
-    container_name: windows
+  qemu:
+    image: qemux/qemu
+    container_name: qemu
     environment:
-      VERSION: "2019"
-      DISK_SIZE: "12G"
-      USERNAME: "ibson"
-      PASSWORD: "123456"
-      RAM_SIZE: "16G"
+      BOOT: "https://releases.ubuntu.com/focal/ubuntu-20.04.6-desktop-amd64.iso"
+      DISK_SIZE: "128G"
+      RAM_SIZE: "8G"
       CPU_CORES: "4"
-      
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -49,10 +45,12 @@ services:
       - 8006:8006
       - 3389:3389/tcp
       - 3389:3389/udp
+
     volumes:
-      - ./windows:/storage
+      - ./qemu:/storage
     restart: always
     stop_grace_period: 2m
+
 EOF
 
 echo
