@@ -1,0 +1,20 @@
+services:
+  qemu:
+    image: qemux/qemu
+    container_name: qemu
+    environment:
+      BOOT: "https://releases.ubuntu.com/focal/ubuntu-20.04.6-desktop-amd64.iso"
+      DISK_SIZE: "128G"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+    volumes:
+      - ./qemu:/storage
+    restart: always
+    stop_grace_period: 2m
