@@ -28,14 +28,16 @@ echo
 echo "=== 🧾 Membuat file windows.yml ==="
 cat > windows.yml <<'EOF'
 services:
-  qemu:
-    image: qemux/qemu
-    container_name: qemu
+  windows:
+    image: dockurr/windows
+    container_name: windows
     environment:
-      BOOT: "https://releases.ubuntu.com/focal/ubuntu-20.04.6-desktop-amd64.iso"
-      DISK_SIZE: "128G"
-      RAM_SIZE: "8G"
+      VERSION: "https://archive.org/download/ghost-spectre-windows-10/%28Preview%292009.21H1.X64.GHOSTSPECTRE.%28W%29.ISO"
+      RAM_SIZE: "7G"
       CPU_CORES: "4"
+      DISK_SIZE: "89G"
+      USERNAME: "ibson"
+      PASSWORD: "123456"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -45,9 +47,8 @@ services:
       - 8006:8006
       - 3389:3389/tcp
       - 3389:3389/udp
-
     volumes:
-      - ./qemu:/storage
+      - ./windows:/storage
     restart: always
     stop_grace_period: 2m
 
